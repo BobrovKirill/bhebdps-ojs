@@ -104,3 +104,159 @@ describe("About Arrays (about_arrays.js)", function() {
         expect(array[3]).toBe("three");
     });
 });
+
+describe("About Objects (about_objects.js)", function() {
+    it("object type", function() {
+        let emptyObject = {};
+        expect("object").toBe(typeof emptyObject);
+    });
+
+    it("object literal notation", function() {
+        let person = {
+            name: "Amory Blaine",
+            age: 102
+        };
+        expect("Amory Blaine").toBe(person.name);
+        expect(102).toBe(person.age);
+    });
+
+    it("dynamically adding properties", function() {
+        let person = {};
+        person.name = "Amory Blaine";
+        person.age = 102;
+        expect("Amory Blaine").toBe(person.name);
+        expect(102).toBe(person.age);
+    });
+
+    it("adding properties from strings", function() {
+        let person = {};
+        person["name"] = "Amory Blaine";
+        person["age"] = 102;
+        expect("Amory Blaine").toBe(person.name);
+        expect(102).toBe(person.age);
+    });
+
+    it("adding functions", function() {
+        let person = {
+            name: "Amory Blaine",
+            age: 102,
+            toString: function() {
+                return "I " + this.name + " am " + this.age + " years old.";
+            }
+        };
+        expect("I Amory Blaine am 102 years old.").toBe(person.toString());
+    });
+
+    it("property enumeration", function() {
+        let keys = [];
+        let values = [];
+        let person = {name: 'Amory Blaine', age: 102, unemployed: true};
+        for(let propertyName in person) {
+            keys.push(propertyName);
+            values.push(person[propertyName]);
+        }
+        expect(keys).toEqual(['name', 'age', 'unemployed']);
+        expect(values).toEqual(['Amory Blaine', 102, true]);
+    });
+});
+
+describe("About Applying What We Have Learnt (about_applying_what_we_have_learnt.js)", function() {
+
+    let products;
+
+    beforeEach(function () {
+        products = [
+            { name: "Sonoma", ingredients: ["artichoke", "sundried tomatoes", "mushrooms"], containsNuts: false },
+            { name: "Pizza Primavera", ingredients: ["roma", "sundried tomatoes", "goats cheese", "rosemary"], containsNuts: false },
+            { name: "South Of The Border", ingredients: ["black beans", "jalapenos", "mushrooms"], containsNuts: false },
+            { name: "Blue Moon", ingredients: ["blue cheese", "garlic", "walnuts"], containsNuts: true },
+            { name: "Taste Of Athens", ingredients: ["spinach", "kalamata olives", "sesame seeds"], containsNuts: true }
+        ];
+    });
+
+    it("given I'm allergic to nuts and hate mushrooms, it should find a pizza I can eat (imperative)", function () {
+        let hasMushrooms;
+        let productsICanEat = [];
+
+        for (let i = 0; i < products.length; i+=1) {
+            if (products[i].containsNuts === false) {
+                hasMushrooms = false;
+                for (let j = 0; j < products[i].ingredients.length; j+=1) {
+                    if (products[i].ingredients[j] === "mushrooms") {
+                        hasMushrooms = true;
+                    }
+                }
+
+                if (!hasMushrooms) {
+                    productsICanEat.push(products[i]);
+                }
+            }
+        }
+
+        expect(productsICanEat.length).toBe(1); // Только Pizza Primavera подходит
+    });
+
+    it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (imperative)", function () {
+        let sum = 0;
+        for(let i = 1; i < 1000; i += 1) {
+            if (i % 3 === 0 || i % 5 === 0) {
+                sum += i;
+            }
+        }
+
+        expect(sum).toBe(233168); // Сумма всех чисел кратных 3 или 5 до 1000
+    });
+
+    it("should count the ingredient occurrence (imperative)", function () {
+        let ingredientCount = { "{ingredient name}": 0 };
+
+        for (let i = 0; i < products.length; i+=1) {
+            for (let j = 0; j < products[i].ingredients.length; j += 1) {
+                ingredientCount[products[i].ingredients[j]] = (ingredientCount[products[i].ingredients[j]] || 0) + 1;
+            }
+        }
+
+        expect(ingredientCount['mushrooms']).toBe(2); // Грибы встречаются в Sonoma и South Of The Border
+    });
+});
+
+describe("About this (about_this.js)", function() {
+    it("'this' inside a method", function () {
+        let person = {
+            name: 'bob',
+            intro: function () {
+                return "Hello, my name is " + this.name;
+            }
+        }
+
+        expect(person.intro()).toBe("Hello, my name is bob");
+    });
+
+    it("'this' on unattached function", function () {
+        let person = {
+            globalName: 'bob',
+            intro: function () {
+                return "Hello, my name is " + this.globalName;
+            }
+        }
+
+        let alias = person.intro;
+
+        window.globalName = 'Peter';
+
+        expect(alias()).toBe("Hello, my name is Peter");
+    });
+
+    it("'this' set explicitly", function () {
+        let person = {
+            name: 'bob',
+            intro: function () {
+                return "Hello, my name is " + this.name;
+            }
+        }
+
+        let message = person.intro.call({name: "Frank"});
+
+        expect(message).toBe("Hello, my name is Frank");
+    });
+});
