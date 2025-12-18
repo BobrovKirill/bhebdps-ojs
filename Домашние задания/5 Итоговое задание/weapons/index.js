@@ -1,0 +1,9 @@
+export { Weapon } from './Weapon.js';
+export { Arm } from './Arm.js';
+export { Bow } from './Bow.js';
+export { Sword } from './Sword.js';
+export { Knife } from './Knife.js';
+export { Staff } from './Staff.js';
+export { LongBow } from './LongBow.js';
+export { Axe } from './Axe.js';
+export { StormStaff } from './StormStaff.js';

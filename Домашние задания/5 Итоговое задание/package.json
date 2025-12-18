@@ -1,0 +1,17 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "dz",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "author": "bobrov_kirill",
+  "license": "ISC",
+
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

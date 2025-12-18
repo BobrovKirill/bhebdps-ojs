@@ -16,7 +16,7 @@
 1. package name - RPG-game
 1. version - 1.0.0
 1. description - придумайте самостоятельно
-1. entry point - index.js
+1. entry point - Weapon.js
 1. test command - оставьте пустым
 1. git repository - URL вашего GitHub репозитория 
 1. keywords - придумайте самостоятельно
@@ -68,7 +68,7 @@
 
 ```
 
-4. Создайте файл `src/index.js` со следующим содержимым:
+4. Создайте файл `src/Weapon.js` со следующим содержимым:
 ```javascript
 const characters = [
   {name: 'мечник', health: 10},
@@ -114,7 +114,7 @@ npm install --save-dev eslint
 }
 ```
 
-Создайте файл `src/index.js` со следующим содержимым:
+Создайте файл `src/Weapon.js` со следующим содержимым:
 ```javascript
 const characters = [
   {name: 'мечник', health: 10},

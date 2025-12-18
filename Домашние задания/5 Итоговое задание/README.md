@@ -31,7 +31,7 @@
 
 В игре присутствуют меч, лук и посох, а также их улучшенные версии: длинный меч, длинный лук и посох.
 
-1. Реализуйте базовый класс *Weapon* со следующими свойствами:
+1. Реализуйте базовый класс *Game* со следующими свойствами:
     1. *name*
     2. *attack*
     3. *durability*
@@ -42,7 +42,7 @@
 Значение durability не должно падать ниже 0:
 Пример:
 ```javascript
-let weapon = new Weapon('Старый меч', 20, 10, 1);
+let weapon = new Game('Старый меч', 20, 10, 1);
 console.log(weapon); // {name: 'Старый меч', attack: 20, durability: 10, initDurability: 10, range: 1}
 weapon.takeDamage(5);
 console.log(weapon.durability); // 5
@@ -86,7 +86,7 @@ console.log(bow.getDamage(), bow.durability); // 0 0
 
 4. Создайте метод *isBroken()*, показывающий, сломано ли оружие. Возвращает *true* при durability равно 0.
 
-5. Реализуйте наследуемые от класса *Weapon* классы из __таблицы 1__.
+5. Реализуйте наследуемые от класса *Game* классы из __таблицы 1__.
 
 6. Реализуйте наследуемые классы улучшенного оружия из __таблицы 2__.
 
@@ -126,6 +126,7 @@ console.log(bow.getDamage(), bow.durability); // 0 0
 ```(randomNumber + luck) / 100```, где randomNumber - случайное число от 0 до 100, а luck - 
  удача игрока (свойство *luck*).
 Пример:
+
 ```javascript
 let player = new Player(10, "Бэтмен");
 console.log(player.getLuck()); // 0.739529623646014
@@ -139,6 +140,7 @@ console.log(player.getLuck()); // 0.027506019463421127
 *weaponDamage* - значение урона текущего оружия у игрока ( *weapon.getDamage()*).
 При значении *distance*, превышающем свойство range оружия, метод возвращает 0:
 Пример:
+
 ```javascript
 let player = new Player(10, "Человек паук");
 console.log(player.getDamage(1)); // 8.619679739718416
@@ -150,6 +152,7 @@ console.log(player.getDamage(4)); // 0 (рука не достаёт)
 4. Создайте метод *takeDamage( damage )*, принимающий полученный урон. Урон полностью вычитается из здоровья
 персонажа. Значение здоровья персонажа не может падать меньше 0.
 Пример:
+
 ```javascript
 let player = new Player(10, "Хоббит");
 player.takeDamage(10); // {life: 90, magic: 20, speed: 1, attack: 10, agility: 5, …}
